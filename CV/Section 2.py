@@ -202,12 +202,49 @@ cv2.imwrite(r'Sec2\g.jpg', g)
 cv2.imwrite(r'Sec2\r.jpg', r)
 
 
-
 # Merge
+# Merge three channels (blue, green, and red) into a single RGB image
 image_merge = cv2.merge([b, g, r])
+
+# Display the merged image
 cv2.imshow("RGB_Image", image_merge)
+
+# Save the merged image to disk
 cv2.imwrite(r'Sec2\image_merge.jpg', image_merge)
+
+# Wait for a key event and exit when any key is pressed
 cv2.waitKey(0)
+
+# Create a black square image with a size of 400x400 pixels
+square = np.zeros((400,400),dtype="uint8")
+
+# Display the square image
+cv2.imshow("square",square)
+
+# Wait for a key event and exit when any key is pressed
+cv2.waitKey(0)
+
+# Draw a white rectangle in the center of the square image
+img_rec = cv2.rectangle(square,(50,50),(350,350),255,-1)
+
+# Display the image with the rectangle
+cv2.imshow("img_rec",img_rec)
+
+# Wait for a key event and exit when any key is pressed
+cv2.waitKey(0)
+
+# Create a black circle image with a size of 400x400 pixels
+circle = np.zeros((400,400),dtype="uint8")
+
+# Draw a white circle in the center of the circle image
+img_cir = cv2.circle(circle,(200,200),200,255,-1)
+
+# Display the image with the circle
+cv2.imshow("circle",img_cir)
+
+# Wait for a key event and exit when any key is pressed
+cv2.waitKey(0)
+
 
 zero = np.zeros(img1.shape[:2],dtype=np.uint8)
 red = cv2.merge([zero,zero,r])
@@ -219,6 +256,8 @@ cv2.imshow('green', gr)
 cv2.waitKey(0)
 cv2.imshow('blue', bl)
 cv2.waitKey(0)
+
+
 
 
 
