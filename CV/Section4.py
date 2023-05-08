@@ -80,39 +80,92 @@ cv2.imshow("livee",img1)
 cv2.waitKey(0)
 
 
-#detect faces in video from camera lab
-# stream = cv2.VideoCapture(0)
+'''
+This code uses the OpenCV library to detect faces, eyes, and smiles in a video stream captured from 
+ the computer's default camera.
 
-# if (stream.isOpened()== False): 
-#   print("Error opening video stream or file")
-  
-# # Read until video is completed
-# while(stream.isOpened()):
-#     st,frame=stream.read()# for (x,y,w,h) in faces:
+The code first creates a VideoCapture object called stream which initializes the default camera (device 0).
 
-#     gray_img=cv2.cvtColor(frame,cv2.COLOR_BGR2GRAY)
-#     faces=face_detect.detectMultiScale(gray_img,1.3,5)
-# #detect faces from image    
-#     for (x,y,w,h) in faces:
-#         cv2.rectangle(frame,(x,y),(x+w,y+h),(0,255,0),2)
+Then it checks if the camera is opened successfully using the isOpened() method. If the camera is not opened successfully,
+ it prints an error message.
+
+The code then enters a while loop which continues until the video stream is opened. Within the loop,
+ it reads each frame from the video stream using the read() method of the stream object and converts the image 
+ to grayscale using cv2.cvtColor() method. Then, the detectMultiScale() method of the face_detect object is used to
+ detect the faces in the grayscale image.
+
+After detecting the faces, the code draws a green rectangle around each face using the cv2.rectangle() method.
+
+Then, for each face, the code creates a new image called img2 containing only that face. 
+ The detectMultiScale() method of the eye_detect object is then used to detect the eyes in img2,
+ and a red rectangle is drawn around each eye.
+
+The detectMultiScale() method of the smile_detect object is used to detect the smiles in img2, 
+ and a blue rectangle is drawn around each smile.
+
+Finally, the modified image with rectangles around faces, eyes, and smiles is displayed in a 
+ new window using cv2.imshow() method. The loop will continue until the user presses the "x" key, 
+ upon which the program will terminate by breaking out of the loop.
+
+Finally, the code releases the video stream and destroys all the windows created by the program using release()
+ and destroyAllWindows() method.
+'''
+
+# Importing necessary libraries
+import cv2
+
+# Initializing the video capture object from the camera
+stream = cv2.VideoCapture(0)
+
+# Checking if the camera is available and working
+if (stream.isOpened() == False): 
+   print("Error opening video stream or file")
+
+# Looping until the video is completed
+while(stream.isOpened()):
+    # Reading the frames from the camera
+    st, frame = stream.read()
+    
+    # Converting the frame to grayscale for face detection
+    gray_img = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
+    
+    # Detecting faces in the grayscale image
+    faces = face_detect.detectMultiScale(gray_img, 1.3, 5)
+
+    # Looping through all the detected faces
+    for (x,y,w,h) in faces:
+        # Drawing a green rectangle around the detected face
+        cv2.rectangle(frame,(x,y),(x+w,y+h),(0,255,0),2)
         
-# #detect eyes in faces
-#         img2=frame[y:y+h,x:x+w]
-#         eyes=eye_detect.detectMultiScale(img2)
-#         for (ex,ey,ew,eh) in eyes:
-#             cv2.rectangle(img2,(ex,ey),(ex+ew,ey+eh),(0,0,255),2)
+        # Cropping the detected face region
+        img2 = frame[y:y+h, x:x+w]
+        
+        # Detecting eyes in the cropped face region
+        eyes = eye_detect.detectMultiScale(img2)
+        
+        # Looping through all the detected eyes
+        for (ex, ey, ew, eh) in eyes:
+            # Drawing a red rectangle around the detected eye
+            cv2.rectangle(img2, (ex, ey), (ex+ew, ey+eh), (0, 0, 255), 2)
             
-            
-# #detect smile in faces 
-#         smiles=smile_detect.detectMultiScale(img2,1.3,10)
-#         for(sx,sy,sw,sh)in smiles:
-#             cv2.rectangle(img2,(sx,sy),(sx+sw,sy+sh),(255,0,0),2)
-#     cv2.imshow("livee",frame)
-#     if cv2.waitKey(50)&0xff==ord("x"):
-#         break
+        # Detecting smiles in the cropped face region
+        smiles = smile_detect.detectMultiScale(img2, 1.3, 10)
+        
+        # Looping through all the detected smiles
+        for(sx, sy, sw, sh) in smiles:
+            # Drawing a blue rectangle around the detected smile
+            cv2.rectangle(img2, (sx, sy), (sx+sw, sy+sh), (255, 0, 0), 2)
     
-# stream.release()
-# cv2.destroyAllWindows()
+    # Displaying the frame with the detected faces, eyes and smiles
+    cv2.imshow("livee", frame)
+    
+    # Checking for the 'x' key press to exit the video capture
+    if cv2.waitKey(50) & 0xff == ord("x"):
+        break
 
-    
-# # mouse event function
+# Releasing the video capture object and destroying all windows
+stream.release()
+cv2.destroyAllWindows()
+
+
+
