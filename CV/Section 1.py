@@ -45,8 +45,10 @@ img2 = cv2.imread(r"Sec1\p2.PNG",1)
 print(img2.shape)
 cv2.imshow("Image",img2)
 cv2.waitKey(0)
+
 img3 = cv2.resize(img2,(1500,700))
 print(img3.shape)
+
 cv2.imshow("Image After re-sizeing",img3)
 cv2.waitKey(0)
 
@@ -54,8 +56,10 @@ cv2.waitKey(0)
 #           coloring image
 
 img4 = cv2.imread(r"Sec1\image.jpg",0 or 1 or -1)
+
 yuv_image = cv2.cvtColor(img4,cv2.COLOR_BGR2YUV)
 gray_img = cv2.cvtColor(img4,cv2.COLOR_BGR2GRAY)
+
 cv2.imshow("gray_img",gray_img)
 m2 = cv2.waitKey(0)
 cv2.imshow("yuv_image",yuv_image)

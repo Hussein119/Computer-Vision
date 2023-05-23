@@ -4,13 +4,14 @@
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>e747b70f-5ea6-46d0-8709-13a2a89fa081</ProjectGuid>
     <ProjectHome>.</ProjectHome>
-    <StartupFile>Section5.py</StartupFile>
+    <StartupFile>Study.py</StartupFile>
     <SearchPath>
     </SearchPath>
     <WorkingDirectory>.</WorkingDirectory>
     <OutputPath>.</OutputPath>
     <Name>CV</Name>
     <RootNamespace>CV</RootNamespace>
+    <TestFramework>Pytest</TestFramework>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
     <DebugSymbols>true</DebugSymbols>
@@ -21,11 +22,14 @@
     <EnableUnmanagedDebugging>false</EnableUnmanagedDebugging>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="QS.py" />
     <Compile Include="Section 1.py" />
     <Compile Include="Section 2.py" />
     <Compile Include="Section3.py" />
     <Compile Include="Section4.py" />
     <Compile Include="Section5.py" />
+    <Compile Include="Study.py" />
+    <Compile Include="Test.py" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\Python Tools\Microsoft.PythonTools.targets" />
   <!-- Uncomment the CoreCompile target to enable the Build command in

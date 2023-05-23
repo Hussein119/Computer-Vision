@@ -111,8 +111,6 @@ Finally, the code releases the video stream and destroys all the windows created
  and destroyAllWindows() method.
 '''
 
-# Importing necessary libraries
-import cv2
 
 # Initializing the video capture object from the camera
 stream = cv2.VideoCapture(0)

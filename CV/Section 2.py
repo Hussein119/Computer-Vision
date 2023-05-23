@@ -22,7 +22,6 @@ import numpy as np
 
 #  add two pixel in cv2
 
-
 '''
 This line adds two grayscale pixel values of 200 and 100 using the cv2.add() function.
 Since the pixel values are represented as 8-bit unsigned integers, 
@@ -30,7 +29,11 @@ Since the pixel values are represented as 8-bit unsigned integers,
 The result of the operation is a pixel value of 255, which is the maximum possible value for an 8-bit unsigned integer. 
 This pixel value is printed to the console as part of a formatted string.
 '''
-print("max of 255: {}".format(cv2.add(np.uint8([200]),np.uint8([100]))))
+# Add two grayscale pixel values
+result = cv2.add(np.uint8([200]), np.uint8([100]))
+
+# Print the result
+print("MAX of 255: {}".format(result))
 
 '''
 This line subtracts two grayscale pixel values of 100 and 200 using the cv2.subtract() function.
@@ -256,9 +259,6 @@ cv2.imshow('green', gr)
 cv2.waitKey(0)
 cv2.imshow('blue', bl)
 cv2.waitKey(0)
-
-
-
 
 
 cv2.destroyAllWindows()
